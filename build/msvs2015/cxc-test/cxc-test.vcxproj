@@ -18,6 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\include\cxc\test\suite" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\sources\test\suite\suite.cpp" />
+    <ClCompile Include="..\..\..\sources\test\suite\suite_data.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\sources\test\suite\suite_data" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3BEF301A-6353-485E-A884-DBA33B2C9C43}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -143,12 +153,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\include\cxc\test\suite" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\sources\test\suite.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

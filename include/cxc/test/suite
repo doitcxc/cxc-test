@@ -16,7 +16,7 @@ namespace cxc
         {
         public:
             suite(const std::string& name);
-            suite(suite& owner, const std::string& name);
+            suite(const suite& owner, const std::string& name);
             virtual ~suite();
 
             virtual void add(const test_case& new_case);
@@ -28,6 +28,7 @@ namespace cxc
 
             virtual const std::string& get_name() const;
             virtual const std::string& get_path() const;
+            virtual const suite& get_owner() const;
 
             static suite& global();
 

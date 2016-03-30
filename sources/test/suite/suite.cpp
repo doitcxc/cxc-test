@@ -1,46 +1,22 @@
 #include "suite_data"
-#include <algorithm>
 
 namespace cxc
 {
     namespace test
     {
-        class suite::data
+        namespace
         {
-        public:
-            void bind();
-
-            suite& m_owner;
-            std::string m_name;
-            std::string m_path;
-            std::deque<test_case> m_cases;
-            std::map<std::string, suite> m_scope;
-        private:
-        };
+            const std::string GLOBAL_SUITE_NAME = "";
+        }
 
         suite::suite(const std::string& name)
-            : m_owner(global()), m_name(name)
+            : m_data(std::make_shared<suite::data>(global(), name))
         {
-            bind();
         }
 
         suite::suite(const suite& owner, const std::string& name)
-            : m_owner(owner), m_name(name)
+            : m_data(std::make_shared<suite::data>(owner, name))
         {
-            bind();
-        }
-
-        suite::suite()
-            : m_owner(*this), m_name(NAME_GLOBAL)
-        {
-        }
-
-        void suite::bind()
-        {
-            if (m_owner.m_scope.find(m_name) != m_owner.m_scope.end())
-                std::runtime_error("TODO: text");
-            m_owner.m_scope[m_name] = *this;
-            m_path = m_owner.get_path() + PATH_DELIMITER + m_owner.get_name();
         }
 
         suite::~suite()
@@ -49,54 +25,43 @@ namespace cxc
 
         suite& suite::global()
         {
-            static suite scope;
+            static suite scope(GLOBAL_SUITE_NAME);
             return scope;
         }
 
         void suite::add(const test_case& new_case)
         {
-            m_cases.push_back(new_case);
+            m_data->add(new_case);
         }
 
         void suite::run()
         {
-            setup();
-            std::for_each(m_cases.begin(), m_cases.end(),
-                [this](test_case& current) {
-                    try
-                    {
-                        current(*this);
-                    }
-                    catch (std::exception& e)
-                    {
-                        // TODO: hierarchy of abort/ignore test exceptions
-                    }
-                }
-            );
-            std::for_each(m_scope.begin(), m_scope.end(),
-                [this](suite& current) {
-                    current.run();
-                }
-            );
-            release();
+            m_data->run();
         }
 
         void suite::setup()
         {
+            m_data->setup();
         }
 
         void suite::release()
         {
+            m_data->release();
         }
 
         const std::string& suite::get_name() const
         {
-            return m_name;
+            return m_data->get_name();
         }
 
         const std::string& suite::get_path() const
         {
-            return m_path;
+            return m_data->get_path();
+        }
+
+        const suite & suite::get_owner() const
+        {
+            return m_data->get_owner();
         }
     }
 }

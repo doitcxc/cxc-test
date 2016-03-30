@@ -11,9 +11,22 @@ namespace cxc
         class suite::data
         {
         public:
-            data(const suite& owner, const std::string& name);
+            data(suite& self, const suite& owner, const std::string& name);
+            virtual ~data();
+
+            virtual void add(const test_case& new_case);
+
+            virtual void run();
+
+            virtual void setup();
+            virtual void release();
+
+            virtual const std::string& get_name() const;
+            virtual const std::string& get_path() const;
+            virtual const suite& get_owner() const;
 
         private:
+            suite& m_self;
             suite m_owner;
             std::string m_name;
             std::string m_path;

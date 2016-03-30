@@ -6,13 +6,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\include\cxc\test\suite">
+    <None Include="..\..\..\include\cxc\test\suite">
       <Filter>suite</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\sources\test\suite.cpp">
+    <ClCompile Include="..\..\..\sources\test\suite\suite.cpp">
       <Filter>suite</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\test\suite\suite_data.cpp">
+      <Filter>suite</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\sources\test\suite\suite_data">
+      <Filter>suite</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
