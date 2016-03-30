@@ -1,0 +1,24 @@
+#pragma once
+
+#include <cxc/test/suite>
+#include <deque>
+#include <map>
+
+namespace cxc
+{
+    namespace test
+    {
+        class suite::data
+        {
+        public:
+            data(const suite& owner, const std::string& name);
+
+        private:
+            suite m_owner;
+            std::string m_name;
+            std::string m_path;
+            std::deque<test_case> m_cases;
+            std::map<std::string, suite> m_scope;
+        };
+    }
+}

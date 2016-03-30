@@ -1,0 +1,40 @@
+#pragma once
+
+#include <functional>
+#include <string>
+#include <memory>
+
+namespace cxc
+{
+    namespace test
+    {
+        class suite;
+
+        typedef std::function<void(suite&)> test_case;
+
+        class suite
+        {
+        public:
+            suite(const std::string& name);
+            suite(suite& owner, const std::string& name);
+            virtual ~suite();
+
+            virtual void add(const test_case& new_case);
+
+            virtual void run();
+
+            virtual void setup();
+            virtual void release();
+
+            virtual const std::string& get_name() const;
+            virtual const std::string& get_path() const;
+
+            static suite& global();
+
+        private:
+            class data;
+
+            std::shared_ptr<data> m_data;
+        };
+    }
+}
