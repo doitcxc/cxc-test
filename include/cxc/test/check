@@ -1,0 +1,19 @@
+#pragma once
+
+namespace cxc
+{
+    namespace test
+    {
+        template <typename value_type>
+        class check
+        {
+        public:
+            check(const value_type& value)
+                : m_value(value) {
+            }
+
+        private:
+            const value_type& m_value;
+        };
+    }
+}

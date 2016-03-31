@@ -4,6 +4,9 @@
     <Filter Include="suite">
       <UniqueIdentifier>{0772c57a-1975-4a0b-b5ba-162f401f0a01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="fail">
+      <UniqueIdentifier>{61d7fd10-05e2-4f1b-8f03-4e8f9cbd32c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\cxc\test\suite">
@@ -17,10 +20,24 @@
     <ClCompile Include="..\..\..\sources\test\suite\suite_data.cpp">
       <Filter>suite</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\test\fail\fail.cpp">
+      <Filter>fail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\test\fail\fail_data.cpp">
+      <Filter>fail</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\sources\test\suite\suite_data">
       <Filter>suite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\cxc\test\export" />
+    <ClInclude Include="..\..\..\include\cxc\test\check" />
+    <ClInclude Include="..\..\..\include\cxc\test\fail">
+      <Filter>fail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\test\fail\fail_data">
+      <Filter>fail</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

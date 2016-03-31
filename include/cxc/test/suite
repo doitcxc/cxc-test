@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cxc/test/export>
 #include <functional>
 #include <string>
 #include <memory>
@@ -8,11 +9,9 @@ namespace cxc
 {
     namespace test
     {
-        class suite;
-
         typedef std::function<void(suite&)> test_case;
 
-        class suite
+        class cxc_test_public suite
         {
         public:
             suite(const std::string& name);
@@ -34,6 +33,8 @@ namespace cxc
 
         private:
             class data;
+
+            friend class suite::data;
 
             std::shared_ptr<data> m_data;
         };

@@ -1,5 +1,6 @@
 #include "suite_data"
 #include <algorithm>
+#include <stdexcept>
 
 namespace cxc
 {
@@ -13,7 +14,14 @@ namespace cxc
         suite::data::data(suite& self, const suite& owner, const std::string& name)
             : m_self(self), m_owner(owner), m_name(name)
         {
-            // TODO: bind to owner
+            data& owner_data = *m_owner.m_data;
+            if (owner_data.m_scope.find(name) != owner_data.m_scope.end())
+            {
+                throw std::runtime_error("Test suite with such name \"" + name + 
+                        "\" is already presented in the test scope " + owner.get_path());
+            }
+            owner_data.m_scope.insert(std::make_pair(name, self));
+            m_path = owner.get_path() + SUITE_PATH_DELIMITER + owner.get_name();
         }
 
         suite::data::~data()
@@ -33,7 +41,8 @@ namespace cxc
                 }
             );
             std::for_each(m_scope.begin(), m_scope.end(),
-                [this](suite current) {
+                [](std::pair<const std::string, suite>& value) {
+                    suite current = value.second;
                     current.run();
                 }
             );

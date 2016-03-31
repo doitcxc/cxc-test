@@ -10,12 +10,12 @@ namespace cxc
         }
 
         suite::suite(const std::string& name)
-            : m_data(std::make_shared<suite::data>(global(), name))
+            : m_data(std::make_shared<suite::data>(*this, global(), name))
         {
         }
 
         suite::suite(const suite& owner, const std::string& name)
-            : m_data(std::make_shared<suite::data>(owner, name))
+            : m_data(std::make_shared<suite::data>(*this, owner, name))
         {
         }
 
@@ -31,22 +31,22 @@ namespace cxc
 
         void suite::add(const test_case& new_case)
         {
-            m_data->add(new_case);
+            return m_data->add(new_case);
         }
 
         void suite::run()
         {
-            m_data->run();
+            return m_data->run();
         }
 
         void suite::setup()
         {
-            m_data->setup();
+            return m_data->setup();
         }
 
         void suite::release()
         {
-            m_data->release();
+            return m_data->release();
         }
 
         const std::string& suite::get_name() const

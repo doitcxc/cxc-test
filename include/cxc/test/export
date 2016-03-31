@@ -1,0 +1,18 @@
+#pragma once
+
+#if !defined(WIN32) || defined(CXCTEST_STATIC)
+#   define cxc_test_public
+#elif defined(CXCTEST_EXPORTS)
+#   define cxc_test_public __declspec(dllexport)
+#else
+#   define cxc_test_public __declspec(dllimport)
+#endif
+
+namespace cxc
+{
+    namespace test
+    {
+        class suite;
+        class fail;
+    }
+}

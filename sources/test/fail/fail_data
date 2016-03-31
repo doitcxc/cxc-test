@@ -1,0 +1,27 @@
+#pragma once
+
+#include <cxc/test/fail>
+
+namespace cxc
+{
+    namespace test
+    {
+        class fail::data
+        {
+        public:
+            data(const std::string& message, const std::string& file, int line);
+            virtual ~data();
+
+            virtual const std::string& get_output() const;
+            virtual const std::string& get_message() const;
+            virtual const std::string& get_file() const;
+            virtual int get_line() const;
+
+        private:
+            std::string m_output;
+            std::string m_message;
+            std::string m_file;
+            int m_line;
+        };
+    }
+}
