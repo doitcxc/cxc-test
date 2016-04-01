@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cxc/test/suite>
+#include <cxc/test/scope>
 #include <deque>
 #include <map>
 
@@ -8,13 +8,11 @@ namespace cxc
 {
     namespace test
     {
-        class suite::data
+        class scope::data
         {
         public:
-            data(suite& self, const suite& owner, const std::string& name);
+            data(scope& self, const scope& owner, const std::string& name);
             virtual ~data();
-
-            virtual void add(const test_case& new_case);
 
             virtual void run();
 
@@ -23,15 +21,16 @@ namespace cxc
 
             virtual const std::string& get_name() const;
             virtual const std::string& get_path() const;
-            virtual const suite& get_owner() const;
+            virtual const std::string& get_full_name() const;
+            virtual const scope& get_owner() const;
 
         private:
-            suite& m_self;
-            suite m_owner;
+            scope& m_self;
+            scope m_owner;
             std::string m_name;
             std::string m_path;
-            std::deque<test_case> m_cases;
-            std::map<std::string, suite> m_scope;
+            std::string m_full_name;
+            std::map<std::string, scope> m_scope;
         };
     }
 }

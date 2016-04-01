@@ -5,16 +5,29 @@ namespace cxc
 {
     namespace test
     {
-        fail::data::data(const std::string& message, const std::string& file, int line)
-            : m_message(message), m_file(file), m_line(line)
+        fail::data::data(const std::string& message, const scope& source, 
+                         const std::string& file, int line)
+            : m_message(message),
+              m_source(source),
+              m_file(file),
+              m_line(line)
         {
             std::stringstream output;
-            output << "FAIL @ " << file << '(' << line << "): " << message;
+            output << "FAIL!"
+                      "\n > Source: " << source.get_full_name() 
+                   << "\n > File: " << file 
+                   << "\n > Line: " << line
+                   << "\n > Message : " << message;
             m_output = output.str();
         }
 
         fail::data::~data()
         {
+        }
+
+        const scope& fail::data::get_source() const
+        {
+            return m_source;
         }
 
         const std::string& fail::data::get_output() const

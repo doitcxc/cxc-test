@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cxc/test/fail>
+#include <cxc/test/scope>
 
 namespace cxc
 {
@@ -9,15 +10,18 @@ namespace cxc
         class fail::data
         {
         public:
-            data(const std::string& message, const std::string& file, int line);
+            data(const std::string& message, const scope& source,
+                 const std::string& file, int line);
             virtual ~data();
 
+            virtual const scope& get_source() const;
             virtual const std::string& get_output() const;
             virtual const std::string& get_message() const;
             virtual const std::string& get_file() const;
             virtual int get_line() const;
 
         private:
+            scope m_source;
             std::string m_output;
             std::string m_message;
             std::string m_file;

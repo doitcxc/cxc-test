@@ -19,20 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\include\cxc\test\suite" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\..\sources\test\fail\fail.cpp" />
     <ClCompile Include="..\..\..\sources\test\fail\fail_data.cpp" />
-    <ClCompile Include="..\..\..\sources\test\suite\suite.cpp" />
-    <ClCompile Include="..\..\..\sources\test\suite\suite_data.cpp" />
+    <ClCompile Include="..\..\..\sources\test\scope\scope.cpp" />
+    <ClCompile Include="..\..\..\sources\test\scope\scope_data.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\cxc\test\check" />
     <ClInclude Include="..\..\..\include\cxc\test\export" />
     <ClInclude Include="..\..\..\include\cxc\test\fail" />
     <ClInclude Include="..\..\..\sources\test\fail\fail_data" />
-    <ClInclude Include="..\..\..\sources\test\suite\suite_data" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\include\cxc\test\scope" />
+    <None Include="..\..\..\sources\test\scope\scope_data" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3BEF301A-6353-485E-A884-DBA33B2C9C43}</ProjectGuid>

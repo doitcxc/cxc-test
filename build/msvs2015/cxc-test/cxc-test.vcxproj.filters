@@ -1,36 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="suite">
-      <UniqueIdentifier>{0772c57a-1975-4a0b-b5ba-162f401f0a01}</UniqueIdentifier>
-    </Filter>
     <Filter Include="fail">
       <UniqueIdentifier>{61d7fd10-05e2-4f1b-8f03-4e8f9cbd32c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="scope">
+      <UniqueIdentifier>{0772c57a-1975-4a0b-b5ba-162f401f0a01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\include\cxc\test\suite">
-      <Filter>suite</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\sources\test\suite\suite.cpp">
-      <Filter>suite</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\test\suite\suite_data.cpp">
-      <Filter>suite</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\sources\test\fail\fail.cpp">
       <Filter>fail</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\test\fail\fail_data.cpp">
       <Filter>fail</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\test\scope\scope.cpp">
+      <Filter>scope</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\test\scope\scope_data.cpp">
+      <Filter>scope</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\sources\test\suite\suite_data">
-      <Filter>suite</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\cxc\test\export" />
     <ClInclude Include="..\..\..\include\cxc\test\check" />
     <ClInclude Include="..\..\..\include\cxc\test\fail">
@@ -39,5 +31,13 @@
     <ClInclude Include="..\..\..\sources\test\fail\fail_data">
       <Filter>fail</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\include\cxc\test\scope">
+      <Filter>scope</Filter>
+    </None>
+    <None Include="..\..\..\sources\test\scope\scope_data">
+      <Filter>scope</Filter>
+    </None>
   </ItemGroup>
 </Project>

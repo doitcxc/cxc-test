@@ -12,10 +12,11 @@ namespace cxc
         class cxc_test_public fail : public std::exception
         {
         public:
-            fail(const std::string& message, const std::string& file, int line);
+            fail(const std::string& message, const scope& source, const std::string& file, int line);
 
             virtual const char* what() const override;
 
+            virtual const scope& get_source() const;
             virtual const std::string& get_output() const;
             virtual const std::string& get_message() const;
             virtual const std::string& get_file() const;

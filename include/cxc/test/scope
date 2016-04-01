@@ -1,0 +1,42 @@
+#pragma once
+
+#include <cxc/test/export>
+#include <functional>
+#include <string>
+#include <memory>
+
+namespace cxc
+{
+    namespace test
+    {
+        class cxc_test_public scope
+        {
+        public:
+            scope(const std::string& name);
+            scope(const scope& owner, const std::string& name);
+            virtual ~scope();
+
+            virtual void run();
+
+            virtual void setup();
+            virtual void release();
+
+            virtual const std::string& get_name() const;
+            virtual const std::string& get_path() const;
+            virtual const std::string& get_full_name() const;
+            virtual const scope& get_owner() const;
+
+            static scope& global();
+
+        protected:
+            class data;
+            friend class scope::data;
+
+            // to initialize by derived class data
+            scope(data* new_data);
+
+        private:
+            std::shared_ptr<data> m_data;
+        };
+    }
+}

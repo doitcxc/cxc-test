@@ -1,5 +1,8 @@
 #pragma once
 
+#include <cxc/test/fail>
+#include <cxc/test/scope>
+
 namespace cxc
 {
     namespace test
@@ -8,12 +11,22 @@ namespace cxc
         class check
         {
         public:
-            check(const value_type& value)
-                : m_value(value) {
+            check(const value_type& value, const scope& source, const char* file, int line)
+                : m_value(value)
+            {
+            }
+
+            void ensure(bool result, const std::string& message)
+            {
+                if (!result)
+                    throw fail(message, file, line);
             }
 
         private:
             const value_type& m_value;
+            const scope& m_source;
+            const char* file;
+            int line;
         };
     }
 }

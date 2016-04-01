@@ -12,7 +12,7 @@ namespace cxc
 {
     namespace test
     {
-        class suite;
+        class scope;
         class fail;
     }
 }
