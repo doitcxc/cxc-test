@@ -16,10 +16,65 @@ namespace cxc
             {
             }
 
-            void ensure(bool result, const std::string& message)
+            void ensure(bool result, const std::string& message) const
             {
                 if (!result)
-                    throw fail(message, file, line);
+                    throw fail(message, m_source, m_file, m_line);
+            }
+
+            template <typename another_type>
+            void operator == (const another_type& another) const
+            {
+                ensure(m_value == another, "X == Y"); // TODO: lazy formatter
+            }
+
+            template <typename another_type>
+            void operator != (const another_type& another) const
+            {
+                ensure(m_value != another, "X != Y"); // TODO: lazy formatter
+            }
+
+            template <typename another_type>
+            void operator < (const another_type& another) const
+            {
+                ensure(m_value < another, "X < Y"); // TODO: lazy formatter
+            }
+
+            template <typename another_type>
+            void operator > (const another_type& another) const
+            {
+                ensure(m_value > another, "X > Y"); // TODO: lazy formatter
+            }
+
+            template <typename another_type>
+            void operator <= (const another_type& another) const
+            {
+                ensure(m_value <= another, "X <= Y"); // TODO: lazy formatter
+            }
+
+            template <typename another_type>
+            void operator >= (const another_type& another) const
+            {
+                ensure(m_value >= another, "X >= Y"); // TODO: lazy formatter
+            }
+
+            void operator ! () const
+            {
+                ensure(!m_value, "!X"); // TODO: lazy formatter
+            }
+
+            template <class exception_type>
+            void expect_exception()
+            {
+                try
+                {
+                    m_value();
+                }
+                catch (exception_type&)
+                {
+                    // OK
+                }
+                ensure(false, "Exception expected.");
             }
 
         private:
