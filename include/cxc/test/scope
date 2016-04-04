@@ -27,6 +27,7 @@ namespace cxc
             virtual const scope& get_owner() const;
 
             static scope& global();
+            static scope& local();
 
         protected:
             class data;

@@ -3,6 +3,8 @@
 #include <cxc/test/fail>
 #include <cxc/test/scope>
 
+#define CXC_CHECK(value) cxc::test::check(value, cxc::test::scope::local(), __FILE__, __LINE__)
+
 namespace cxc
 {
     namespace test
